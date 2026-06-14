@@ -1,0 +1,25 @@
+name: Deploy reactjs App;
+
+on: 
+    push: 
+        branches: [main]
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+
+
+      concurrency :
+       group: deploy
+       cancel-in-progress: true
+
+      steps:
+          - name: checkout Repositery
+            uses: actions/checkout@v6.0.3
+          - name: dependency install 
+            run: npm install
+          - name: build reactjs app
+            run: npm run build 
+
+          - name: Deploy App
+            run: echo "App Deploye"
